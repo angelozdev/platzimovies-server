@@ -1,0 +1,43 @@
+type Movie {
+   _id: ID!
+   title: String!
+   year: Int!
+   cover: String!
+   description: String!
+   duration: Int!
+   contentRating: String!
+   source: String!
+   tags: [String!]!
+}
+
+type Query {
+   # Get Movies
+   getMovie(id: ID!): Movie
+   # Get Movie by ID
+   getMovies: [Movie!]!
+}
+
+type Mutation {
+   # Create a new Movie
+   createMovie(movie: inputMovie!): Movie
+}
+
+input inputMovie {
+   _id: ID
+   title: String!
+   year: Int!
+   cover: String!
+   description: String!
+   duration: Int!
+   contentRating: ContentRating! # "PG"
+   source: String!
+   tags: [String!]!
+}
+
+enum ContentRating {
+   PG
+   R
+   PG13
+   G
+   NC17
+}
