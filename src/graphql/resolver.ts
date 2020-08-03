@@ -10,8 +10,8 @@ export default {
          return await movieService.getMovies();
       },
 
-      getMovie: async (_: void, { id }: IMovie): Promise<Document | null> => {
-         return await movieService.getMovie(id);
+      getMovie: async (_: void, { _id }: IMovie): Promise<Document | null> => {
+         return await movieService.getMovie(_id);
       }
    },
 
@@ -20,7 +20,13 @@ export default {
          _: void,
          { movie }: { movie: IMovie }
       ): Promise<Document> => {
-         return movieService.createMovie(movie);
+         return await movieService.createMovie(movie);
+      },
+      updateMovie: async (
+         _: void,
+         { movie, id }: { movie: IMovie; id: string }
+      ) => {
+         return await movieService.updateMovie(id, movie);
       }
    },
 

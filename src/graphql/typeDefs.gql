@@ -20,6 +20,19 @@ type Query {
 type Mutation {
    # Create a new Movie
    createMovie(movie: inputMovie!): Movie
+   updateMovie(id: ID!, movie: inputUpdateMovie!): Movie
+}
+
+input inputUpdateMovie {
+   _id: ID
+   title: String
+   year: Int
+   cover: String
+   description: String
+   duration: Int
+   contentRating: ContentRating
+   source: String
+   tags: [String]
 }
 
 input inputMovie {
