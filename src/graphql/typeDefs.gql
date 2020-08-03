@@ -20,7 +20,10 @@ type Query {
 type Mutation {
    # Create a new Movie
    createMovie(movie: inputMovie!): Movie
+   # Update a movie
    updateMovie(id: ID!, movie: inputUpdateMovie!): Movie
+   # Delete a movie
+   deleteMovie(id: ID!): Movie
 }
 
 input inputUpdateMovie {
@@ -42,7 +45,7 @@ input inputMovie {
    cover: String!
    description: String!
    duration: Int!
-   contentRating: ContentRating! # "PG"
+   contentRating: ContentRating!
    source: String!
    tags: [String!]!
 }

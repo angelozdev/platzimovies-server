@@ -1,6 +1,6 @@
 import { IMovie } from '../../interfaces/IMovie';
 import Movie from '../models/Movie';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 class MovieService {
    async getMovies(): Promise<Document[]> {
@@ -12,7 +12,7 @@ class MovieService {
       }
    }
 
-   async getMovie(id: number | string): Promise<Document | null> {
+   async getMovie(id: string): Promise<Document | null> {
       try {
          const movie = await Movie.findById(id);
          return movie;
@@ -31,7 +31,19 @@ class MovieService {
 
    async updateMovie(id: string, movie: IMovie): Promise<Document | null> {
       try {
-         return await Movie.findByIdAndUpdate(id, movie, { new: true });
+         return await Movie.findByIdAndUpdate(
+            Types.ObjectId(id),
+            { $set: movie },
+            { new: true }
+         );
+      } catch (err) {
+         return Promise.reject(err);
+      }
+   }
+
+   async deleteMovie(id: string): Promise<Document | undefined | null> {
+      try {
+         return await Movie.findByIdAndDelete(Types.ObjectId(id));
       } catch (err) {
          return Promise.reject(err);
       }

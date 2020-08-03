@@ -22,11 +22,19 @@ export default {
       ): Promise<Document> => {
          return await movieService.createMovie(movie);
       },
+
       updateMovie: async (
          _: void,
          { movie, id }: { movie: IMovie; id: string }
       ) => {
          return await movieService.updateMovie(id, movie);
+      },
+
+      deleteMovie: async (
+         _: void,
+         { id }: { id: string }
+      ): Promise<Document | null | undefined> => {
+         return await movieService.deleteMovie(id);
       }
    },
 

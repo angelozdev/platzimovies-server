@@ -7,7 +7,8 @@ export default () => {
    mongoose
       .connect(URI, {
          useUnifiedTopology: true,
-         useNewUrlParser: true
+         useNewUrlParser: true,
+         useFindAndModify: false
       })
       .then(() => console.log('[DB] Connected'))
       .catch(console.error);
