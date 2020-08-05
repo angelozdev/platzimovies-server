@@ -7,6 +7,7 @@ const movieService = new MovieService();
 export default {
    Query: {
       getMovies: async (): Promise<Document[]> => {
+         /* throw new Error('Testing Errors'); */
          return await movieService.getMovies();
       },
 
