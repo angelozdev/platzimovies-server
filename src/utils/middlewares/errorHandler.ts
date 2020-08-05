@@ -1,4 +1,4 @@
-import { config } from '../../../config';
+import { config } from '../../config';
 import { Request, Response, NextFunction } from 'express';
 import { Boom, isBoom, badImplementation, Payload } from '@hapi/boom';
 
