@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
+import ExpressPlayground from 'graphql-playground-middleware-express';
 
 /* Errors Handlers */
 import {
@@ -23,6 +24,15 @@ app.use(
       graphiql: true,
       schema
    })
+);
+
+app.get(
+   '/movies',
+   ExpressPlayground({ endpoint: '/graphql' }),
+   (req, res, next) => {
+      console.log('HOla');
+      next();
+   }
 );
 
 app.get('/', (req, res, next) => {
